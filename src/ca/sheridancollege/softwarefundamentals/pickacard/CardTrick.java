@@ -11,22 +11,51 @@ package ca.sheridancollege.softwarefundamentals.pickacard;
  * for the match to the user's card. To be used as starting code in ICE 1
  * @author dancye
  */
+import java.util.Scanner;
 public class CardTrick {
     
     public static void main(String[] args)
     {
+        int decider = 0;
         Card[] magicHand = new Card[7];
+        String[] wholeMagicHand = new String[7];
         
         for (int i=0; i<magicHand.length; i++)
         {
-            Card c = new Card();
-            //c.setValue(insert call to random number generator here)
-            //c.setSuit(Card.SUITS[insert call to random number between 0-3 here])
+            //card c = new card();
+            magicHand[i] = new Card();
+            magicHand[i].setValue((int)(Math.random()*13+1));
+            //System.out.print(magicHand[i].getValue());
+            magicHand[i].setSuit(Card.SUITS[(int)(Math.random()*4)]);
+            //System.out.println(magicHand[i].getSuit());
+     //converting whole magicHand into String
+
+      wholeMagicHand[i] = String.valueOf(magicHand[i].getValue())+magicHand[i].getSuit();
+
+
         }
-        
-        //insert code to ask the user for Card value and suit, create their card
-        // and search magicHand here
-        //Then report the result here
-    }
-    
+     Scanner input = new Scanner(System.in);
+    System.out.print("Enter the Value and type of the card example, 5Hearts: ");
+     String user = input.nextLine();
+
+//Comparing the card in magicHannd
+for(int i = 0 ; i<magicHand.length ; ++i){
+ 
+
+ if(wholeMagicHand[i].equals(user)){
+   decider = 1;
+break;
+
 }
+}
+if(decider == 1 ){
+ System.out.println("Found,The card you chose is in the magic hand");
+}else{
+
+ System.out.println("Not Found!,the card you chose is not in the magic hand");
+
+}
+    }
+
+}
+
